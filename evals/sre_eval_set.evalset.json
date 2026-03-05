@@ -1,0 +1,30 @@
+[
+  {
+    "name": "pass_p1_payment_gateway",
+    "input": "See test_fixtures/app_pass.json",
+    "expected_output_criteria": {
+      "verdict": "PASS",
+      "overall_score_min": 4.0,
+      "blocking_gaps_count": 0
+    }
+  },
+  {
+    "name": "conditional_p2_customer_portal",
+    "input": "See test_fixtures/app_conditional.json",
+    "expected_output_criteria": {
+      "verdict": "CONDITIONAL_PASS",
+      "overall_score_min": 2.5,
+      "overall_score_max": 3.4,
+      "blocking_gaps_count_min": 1
+    }
+  },
+  {
+    "name": "reject_p1_reporting_tool",
+    "input": "See test_fixtures/app_reject.json",
+    "expected_output_criteria": {
+      "verdict": "REJECT",
+      "overall_score_max": 2.4,
+      "blocking_gaps_count_min": 3
+    }
+  }
+]

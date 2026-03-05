@@ -1,0 +1,47 @@
+{
+  "description": "Test fixture: Application that should receive a PASS verdict",
+  "submission": {
+    "app_name": "PaymentGateway",
+    "team": "Payments Platform",
+    "team_lead": "Jane Smith",
+    "tier": "P1_CRITICAL",
+    "architecture": "Microservices on Kubernetes (GKE), multi-region",
+    "cloud_provider": "GCP",
+    "language": "Go",
+    "observability": {
+      "metrics": "Prometheus + Grafana, all golden signals tracked, p50/p95/p99 latency histograms, custom business metrics (payment success rate, settlement latency)",
+      "logging": "Structured JSON logs via Fluentd to BigQuery, correlation IDs propagated, PII redacted, 90-day retention",
+      "tracing": "OpenTelemetry with Jaeger, full trace propagation across 12 microservices, span annotations for payment stages",
+      "alerting": "PagerDuty integration, dual burn-rate SLO alerts (fast 2% / slow 5%), escalation policy defined, alert dedup via labels",
+      "dashboards": "Service-level Grafana dashboards, golden signals view, SLO burn-down, single-pane service health"
+    },
+    "slos": {
+      "availability": "99.99% (rolling 28-day)",
+      "latency": "p99 < 150ms for payment initiation",
+      "error_budget_policy": "Automated tracking, feature freeze at 50% budget consumed, mandatory reliability sprint at 25%",
+      "slo_review_cadence": "Monthly",
+      "sla_buffer": "SLA is 99.95%, SLO is 99.99%"
+    },
+    "incident_management": {
+      "on_call": "24/7 primary + secondary rotation, 6 engineers, PagerDuty managed",
+      "runbooks": "32 runbooks covering all known failure modes, reviewed monthly, accessible via Confluence",
+      "incident_process": "Defined severity levels (SEV1-4), IC/Comms/Scribe roles, Slack war rooms auto-created, status page integration",
+      "postmortems": "Blameless postmortems for all SEV1/SEV2, tracked in Jira, 95% action item completion rate, shared in weekly eng all-hands"
+    },
+    "resilience": {
+      "fault_tolerance": "Multi-region active-active, no SPOFs identified, database with automatic failover",
+      "patterns": "Circuit breakers (Hystrix), retries with exponential backoff + jitter, timeouts on all external calls, bulkhead isolation per payment provider",
+      "capacity": "HPA based on payment TPS, load tested quarterly to 3x peak, capacity model maintained",
+      "dr": "RTO: 5 min, RPO: 0, automated failover tested monthly, backups verified weekly"
+    },
+    "deployment": {
+      "cicd": "Fully automated GitHub Actions pipeline, unit (90% coverage) + integration + e2e tests, SAST/DAST scanning, immutable container images",
+      "strategy": "Canary deployments via Argo Rollouts, automated analysis on error rate + latency, progressive rollout 1% -> 10% -> 50% -> 100%",
+      "rollback": "Automated rollback on SLO breach (<2 min), backward-compatible DB migrations, break-glass instant rollback",
+      "change_management": "All changes tracked in Jira, approval required for P1 services, change freeze windows during peak shopping",
+      "feature_flags": "LaunchDarkly for all new features"
+    }
+  },
+  "expected_verdict": "PASS",
+  "expected_score_range": [4.0, 5.0]
+}

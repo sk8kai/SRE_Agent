@@ -1,0 +1,52 @@
+{
+  "description": "Test fixture: Application that should receive a REJECT verdict",
+  "submission": {
+    "app_name": "InternalReportingTool",
+    "team": "Data Analytics",
+    "team_lead": "Alice Chen",
+    "tier": "P1_CRITICAL",
+    "architecture": "Monolith on single VM",
+    "cloud_provider": "AWS",
+    "language": "PHP",
+    "observability": {
+      "metrics": "Server uptime check via ping, no application metrics",
+      "logging": "Application logs to local disk, rotated weekly",
+      "tracing": "None",
+      "alerting": "Email notification if server goes down",
+      "dashboards": "None"
+    },
+    "slos": {
+      "availability": "Not defined",
+      "latency": "Not defined",
+      "error_budget_policy": "Not defined"
+    },
+    "incident_management": {
+      "on_call": "Team lead's personal phone number shared with ops",
+      "runbooks": "None",
+      "incident_process": "Call the team lead",
+      "postmortems": "None conducted"
+    },
+    "resilience": {
+      "fault_tolerance": "Single VM, single disk, no replication",
+      "patterns": "None implemented",
+      "capacity": "No auto-scaling, no load testing",
+      "dr": "No backups, no DR plan"
+    },
+    "deployment": {
+      "cicd": "Manual FTP upload to server",
+      "strategy": "Replace files directly on production server",
+      "rollback": "Restore from developer's local copy",
+      "change_management": "No tracking"
+    }
+  },
+  "expected_verdict": "REJECT",
+  "expected_score_range": [0.0, 2.4],
+  "expected_blocking_gaps": [
+    "No SLOs defined for P1 service",
+    "No on-call rotation",
+    "No runbooks",
+    "Single point of failure (single VM)",
+    "No backups",
+    "No CI/CD pipeline"
+  ]
+}
